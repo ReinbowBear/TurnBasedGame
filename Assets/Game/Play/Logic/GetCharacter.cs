@@ -6,6 +6,7 @@ public class GetCharacter : MonoBehaviour
 {
     [SerializeField] private Camera cam;
     [SerializeField] private GameCanvas gameCanvas;
+    [SerializeField] private ReadCharacter readCharacter;
     [SerializeField] private ClickCharacter clickController;
     [Space]
     [SerializeField] private LayerMask rayLayer;
@@ -18,12 +19,15 @@ public class GetCharacter : MonoBehaviour
 
     private void NewDrop()
     {
-        for (byte i = 0; i < 3; i++)
+        for (byte i = 0; i < readCharacter.characterSlots.Length; i++)
         {
-            GameObject newCharacter = Instantiate(characters[i], transform.position + new Vector3 (0, -20, 0), Quaternion.identity);
-            CharacterList.Add(newCharacter);
+            if (readCharacter.characterSlots[i].item != null)
+            {
+                GameObject newCharacter = Instantiate(readCharacter.characterSlots[i].item.itemSO.itemPrefab, transform.position + new Vector3 (0, -20, 0), Quaternion.identity);
+                CharacterList.Add(newCharacter);
+            }
         }
-        StartCoroutine(DropZone());
+        StartCoroutine(DropZone()); //может запустить функцию даже если персонажей 0
     }
 
 
