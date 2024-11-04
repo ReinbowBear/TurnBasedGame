@@ -6,8 +6,8 @@ public class GetCharacter : MonoBehaviour
 {
     [SerializeField] private Camera cam;
     [SerializeField] private GameCanvas gameCanvas;
-    [SerializeField] private ReadCharacter readCharacter;
     [SerializeField] private ClickCharacter clickController;
+    [SerializeField] private AbilitySlot[] characterSlots;
     [Space]
     [SerializeField] private LayerMask rayLayer;
     [SerializeField] private byte tilesCount;
@@ -19,11 +19,11 @@ public class GetCharacter : MonoBehaviour
 
     private void NewDrop()
     {
-        for (byte i = 0; i < readCharacter.characterSlots.Length; i++)
+        for (byte i = 0; i < characterSlots.Length; i++)
         {
-            if (readCharacter.characterSlots[i].item != null)
+            if (characterSlots[i].item != null)
             {
-                GameObject newCharacter = Instantiate(readCharacter.characterSlots[i].item.itemSO.itemPrefab, transform.position + new Vector3 (0, -20, 0), Quaternion.identity);
+                GameObject newCharacter = Instantiate(characterSlots[i].item.itemSO.itemPrefab, transform.position + new Vector3 (0, -20, 0), Quaternion.identity);
                 CharacterList.Add(newCharacter);
             }
         }
