@@ -59,7 +59,10 @@ public class TurnManager : MonoBehaviour
         }
 
         isEnemyTurn = false;
+        
         GameKeyboard.gameInput.Enable();
+
+        SaveSystem.onSave.Invoke();
         onPlayerTurn.Invoke();
     }
 }

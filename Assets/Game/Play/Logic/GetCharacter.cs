@@ -11,11 +11,9 @@ public class GetCharacter : MonoBehaviour
     [Space]
     [SerializeField] private LayerMask rayLayer;
     [SerializeField] private byte tilesCount;
-    [Space]
-    [SerializeField] private GameObject[] characters;
+
     public static List<GameObject> CharacterList = new List<GameObject>();
     private List<Tile> tileList = new List<Tile>();
-
 
     private void NewDrop()
     {

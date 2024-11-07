@@ -6,10 +6,9 @@ public class MapContent : MonoBehaviour
 {
     [SerializeField] private GlobalMap globalMap;
     [SerializeField] private MapPanel mapPanel;
-    [Space]
-    [SerializeField] private List<GameObject> maps = new List<GameObject>();
-    private List<GameObject> usedMaps = new List<GameObject>();
-    [SerializeField] private GameObject[] enemy;
+    [SerializeField] private Content content;
+
+    private List<GameObject> maps;
     [Space]
     [SerializeField] private byte minEnemyCount;
     [SerializeField] private byte maxEnemyCount;
@@ -17,15 +16,11 @@ public class MapContent : MonoBehaviour
 
     private System.Random random;
 
-    void Start()
+    public void PrepareMaps()
     {
         random = globalMap.random;
-        PrepareMaps();
-    }
+        maps = new List<GameObject>(content.maps);
 
-
-    private void PrepareMaps()
-    {
         for (byte i = 0; i < globalMap.mapsNumber.Length; i++)
         {
             for (byte ii = 0; ii < globalMap.pathCount; ii++)
@@ -44,15 +39,14 @@ public class MapContent : MonoBehaviour
     private MapData GetMapData(byte mapHeight)
     {
         GameObject randomMap = maps[random.Next(0, maps.Count)];
-        usedMaps.Add(randomMap);
         //maps.Remove(randomMap); недостаточно уникальных карт на всю игру
 
         //HashSet<GameObject> randomEnemys = new HashSet<GameObject>();
         List<GameObject> randomEnemys = new List<GameObject>();
         while (randomEnemys.Count < EnemyTypesCount[mapHeight])
         {
-            int randomEnemy = random.Next(0, enemy.Length);
-            randomEnemys.Add(enemy[randomEnemy]);
+            int randomEnemy = random.Next(0, content.enemys.Length);
+            randomEnemys.Add(content.enemys[randomEnemy]);
         }
 
         List<int> enemyCounts = new List<int>();

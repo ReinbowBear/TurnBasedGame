@@ -18,7 +18,7 @@ public class GlobalMap : MonoBehaviour
 
     public System.Random random;
 
-    void Awake()
+    public void NewGlobalMap()
     {        
         random = new System.Random(DateTime.Now.Millisecond);
         mapPoints = new Map[mapsNumber.Length, mapHeight, mapWidth];
@@ -65,7 +65,7 @@ public class GlobalMap : MonoBehaviour
         SetPointers(pathId, pathNumber);
     }
 
-    public void SetPointers(byte pathId, byte pathNumber)
+    private void SetPointers(byte pathId, byte pathNumber)
     {
         for (byte i = 0; i < mapHeight-1; i++)
         {

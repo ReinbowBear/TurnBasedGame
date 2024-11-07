@@ -1,15 +1,9 @@
 using UnityEngine;
 
-public class ContentController : MonoBehaviour
+public class GlobalMapManager : MonoBehaviour
 {
     [SerializeField] private GlobalMap globalMap;
     [SerializeField] private MapPanel mapPanel;
-
-    void Start()
-    {
-        StartLayer();
-    }
-
 
     public void StartLayer()
     {

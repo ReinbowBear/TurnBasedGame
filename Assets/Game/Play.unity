@@ -1492,11 +1492,13 @@ GameObject:
   m_Component:
   - component: {fileID: 917299341}
   - component: {fileID: 917299345}
+  - component: {fileID: 917299348}
   - component: {fileID: 917299343}
-  - component: {fileID: 917299342}
   - component: {fileID: 917299339}
   - component: {fileID: 917299340}
   - component: {fileID: 917299346}
+  - component: {fileID: 917299342}
+  - component: {fileID: 917299347}
   m_Layer: 0
   m_Name: GameLogic
   m_TagString: Untagged
@@ -1560,16 +1562,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 2062257589}
   gameCanvas: {fileID: 1184539629}
-  readCharacter: {fileID: 1937800695}
   clickController: {fileID: 917299340}
+  characterSlots:
+  - {fileID: 7004742382829917230}
+  - {fileID: 734052028}
+  - {fileID: 1157376197}
+  - {fileID: 1239673279}
+  - {fileID: 1659223465}
   rayLayer:
     serializedVersion: 2
     m_Bits: 64
   tilesCount: 4
-  characters:
-  - {fileID: 4198212250141032927, guid: 876eb2f496af31843a286e40487a1218, type: 3}
-  - {fileID: 4198212250141032927, guid: 876eb2f496af31843a286e40487a1218, type: 3}
-  - {fileID: 4198212250141032927, guid: 876eb2f496af31843a286e40487a1218, type: 3}
 --- !u!114 &917299343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1608,6 +1611,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapEnemys: []
+--- !u!114 &917299347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917299338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956bb9b8e4744fa4884cf5513dfffd4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maps:
+  - {fileID: 7458613977994477613, guid: ceafed7a54438944a96b8416dc817965, type: 3}
+  - {fileID: 133146569566732636, guid: e1b5a4b24489188499b2050f57025d98, type: 3}
+  enemys:
+  - {fileID: 7226016142589831748, guid: 5bd3622d9a2e5aa4d8c68f3c26c8d469, type: 3}
+  - {fileID: 6939292275889453662, guid: c25b18655563ce5489d3ac5f666f75be, type: 3}
+  characters:
+  - {fileID: 11400000, guid: 8559e6894df387b48938cbb125aa1134, type: 2}
+  - {fileID: 11400000, guid: ede53e8d433d36e4eaa0bba50f4c28b1, type: 2}
+  - {fileID: 11400000, guid: 3d4eaeb81c1c87a44b0d20328f9bdeba, type: 2}
+  items:
+  - {fileID: 11400000, guid: fad071652a067e34ca1bd644dd7f7fd0, type: 2}
+  - {fileID: 11400000, guid: 10c8cccfc3922434d97fc76761158748, type: 2}
+  - {fileID: 11400000, guid: 699242a6a70f32f48b26daf0ca16c6ab, type: 2}
+--- !u!114 &917299348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917299338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3358a8de667a5e54f8325f10ed81ee9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  globalMap: {fileID: 2010389746}
+  mapContent: {fileID: 2010389745}
+  globalMapManager: {fileID: 2010389749}
+  inventoryContent: {fileID: 1860918383}
 --- !u!1 &918706553
 GameObject:
   m_ObjectHideFlags: 0
@@ -4171,7 +4216,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 8156746577517630107, guid: 6743c623411223844940846b917fb6e8, type: 3}
-  itemsSO: []
+  myInventory: {fileID: 1860918380}
+  content: {fileID: 917299347}
+  characterSlots:
+  - {fileID: 7004742382829917230}
+  - {fileID: 734052028}
+  - {fileID: 1157376197}
+  - {fileID: 1239673279}
+  - {fileID: 1659223465}
 --- !u!1 &1908038304
 GameObject:
   m_ObjectHideFlags: 0
@@ -4526,7 +4578,6 @@ GameObject:
   - component: {fileID: 1937800691}
   - component: {fileID: 1937800694}
   - component: {fileID: 1937800693}
-  - component: {fileID: 1937800695}
   m_Layer: 5
   m_Name: CharacterPanel
   m_TagString: Untagged
@@ -4592,24 +4643,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937800690}
   m_CullTransparentMesh: 1
---- !u!114 &1937800695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937800690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fd3781f666e9d340a98f41dc72e1c0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterSlots:
-  - {fileID: 7004742382829917230}
-  - {fileID: 734052028}
-  - {fileID: 1157376197}
-  - {fileID: 1239673279}
-  - {fileID: 1659223465}
 --- !u!1 &1984327928
 GameObject:
   m_ObjectHideFlags: 0
@@ -4754,8 +4787,8 @@ GameObject:
   - component: {fileID: 2010389744}
   - component: {fileID: 2010389748}
   - component: {fileID: 2010389746}
-  - component: {fileID: 2010389745}
   - component: {fileID: 2010389749}
+  - component: {fileID: 2010389745}
   m_Layer: 5
   m_Name: GlobalMap
   m_TagString: Untagged
@@ -4798,10 +4831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalMap: {fileID: 2010389746}
   mapPanel: {fileID: 1625135639}
-  maps:
-  - {fileID: 133146569566732636, guid: e1b5a4b24489188499b2050f57025d98, type: 3}
-  enemy:
-  - {fileID: 7226016142589831748, guid: 5bd3622d9a2e5aa4d8c68f3c26c8d469, type: 3}
+  content: {fileID: 917299347}
   minEnemyCount: 1
   maxEnemyCount: 3
   EnemyTypesCount: 03030405

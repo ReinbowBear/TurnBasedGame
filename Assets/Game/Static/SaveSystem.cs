@@ -6,12 +6,11 @@ public static class SaveSystem //https://www.youtube.com/watch?v=1mf730eb5Wo&t=4
 {
     public static Action onSave;
     public static Action onLoad;
+    
     public static GameData gameData = new GameData();
 
     public static void SaveGame()
     {
-        onSave.Invoke();
-
         File.WriteAllText(GetFileName(), JsonUtility.ToJson(gameData, true));
     }
 
@@ -24,7 +23,7 @@ public static class SaveSystem //https://www.youtube.com/watch?v=1mf730eb5Wo&t=4
     }
 
 
-    private static string GetFileName()
+    public static string GetFileName()
     {
         string saveFile = Application.persistentDataPath + "/save" + ".save";
         return saveFile;

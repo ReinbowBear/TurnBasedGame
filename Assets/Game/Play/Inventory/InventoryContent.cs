@@ -4,15 +4,20 @@ public class InventoryContent : MonoBehaviour
 {
     [SerializeField] private GameObject itemPrefab;
     [Space]
-    [SerializeField] private ItemSO[] itemsSO;
+    [SerializeField] private SetInventory myInventory;
+    [SerializeField] private Content content;
+    [Space]
+    [SerializeField] private AbilitySlot[] characterSlots;
 
-    private SetInventory myInventory;
-
-    void Awake()
+    public void StartCharacters()
     {
-        myInventory = GetComponent<SetInventory>();
+        for (byte i = 0; i < characterSlots.Length; i++)
+        {
+            int random = Random.Range(0, content.characters.Length);
+            
+            addCharacter(content.characters[random]);
+        }
     }
-
 
     public void AddItem(ItemSO itemSO)
     {
@@ -30,16 +35,39 @@ public class InventoryContent : MonoBehaviour
         }
     }
 
+    public void addCharacter(ItemSO itemSO)
+    {
+        for (byte i = 0; i < characterSlots.Length; i++)
+        {
+            if (characterSlots[i].item == null)
+            {
+                Item newItem = Instantiate(itemPrefab, characterSlots[i].transform).GetComponent<Item>();
+                newItem.itemSO = itemSO;
+                newItem.RenderItem();
+                break;
+            }
+        }
+    }
+
 
     private void Save()
     {
         SaveInventoryContent saveInventory = new SaveInventoryContent();
 
+        saveInventory.CharactersSO = new ItemSO[characterSlots.Length];
         saveInventory.itemsSO = new ItemSO[myInventory.slots.Count];
+
+        for (byte i = 0; i < characterSlots.Length; i++)
+        {
+            if (characterSlots[i].item != null)
+            {
+                saveInventory.CharactersSO[i] = characterSlots[i].item.itemSO;
+            }
+        }
 
         for (byte i = 0; i < myInventory.slots.Count; i++)
         {
-            if (myInventory.slots[i].item == null)
+            if (myInventory.slots[i].item != null)
             {
                 saveInventory.itemsSO[i] = myInventory.slots[i].item.itemSO;
             }
@@ -51,6 +79,11 @@ public class InventoryContent : MonoBehaviour
     private void Load()
     {
         SaveInventoryContent saveInventory = SaveSystem.gameData.saveInventoryContent;
+
+        for (byte i = 0; i < characterSlots.Length; i++)
+        {
+            addCharacter(saveInventory.CharactersSO[i]);
+        }
 
         for (byte i = 0; i < saveInventory.itemsSO.Length; i++)
         {
@@ -75,5 +108,6 @@ public class InventoryContent : MonoBehaviour
 
 public struct SaveInventoryContent
 {
+    public ItemSO[] CharactersSO;
     public ItemSO[] itemsSO;
 }

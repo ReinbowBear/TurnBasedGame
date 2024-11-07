@@ -1,5 +1,4 @@
 using System;
-using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +21,8 @@ public class MapPanel : MonoBehaviour
             
             battleMapManager.ActivateMap(chosenMap);
             onNewBattle.Invoke();
+            
+            SaveSystem.onSave.Invoke();
         }
     }
 
@@ -38,7 +39,7 @@ public class MapPanel : MonoBehaviour
             }
             else
             {
-                enemyImages[i] = null;
+                enemyImages[i].sprite = null;
                 enemyCount[i].text = null;
             }
         }

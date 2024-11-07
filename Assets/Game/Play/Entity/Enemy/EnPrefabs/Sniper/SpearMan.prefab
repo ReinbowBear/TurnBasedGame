@@ -99,7 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39b67e3e6eb688e4ebd450902396b378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: d3fc38f6ec7feda429a1a645adf85c6c, type: 3}
+  enMove: {fileID: 0}
 --- !u!114 &3428125024754149005
 MonoBehaviour:
   m_ObjectHideFlags: 0
