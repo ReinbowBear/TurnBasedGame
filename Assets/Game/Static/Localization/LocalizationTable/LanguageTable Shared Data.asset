@@ -15,20 +15,24 @@ MonoBehaviour:
   m_TableCollectionName: LanguageTable
   m_TableCollectionNameGuidString: 15f09911337567d4982aa1ae83028276
   m_Entries:
-  - m_Id: 215657611264
-    m_Key: New Game
-    m_Metadata:
-      m_Items: []
   - m_Id: 662439067648
     m_Key: Setting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13487962193920
+    m_Key: paused
+    m_Metadata:
+      m_Items: []
+  - m_Id: 215657611264
+    m_Key: New game
     m_Metadata:
       m_Items: []
   - m_Id: 869595742208
     m_Key: Exit
     m_Metadata:
       m_Items: []
-  - m_Id: 13487962193920
-    m_Key: paused
+  - m_Id: 63290185180381184
+    m_Key: Continue
     m_Metadata:
       m_Items: []
   m_Metadata:

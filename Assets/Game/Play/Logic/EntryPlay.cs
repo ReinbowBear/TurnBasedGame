@@ -1,7 +1,7 @@
 using System.IO;
 using UnityEngine;
 
-public class EntryPoint : MonoBehaviour
+public class EntryPlay : MonoBehaviour
 {
     [SerializeField] private GlobalMap globalMap;
     [SerializeField] private MapContent mapContent;
@@ -17,8 +17,7 @@ public class EntryPoint : MonoBehaviour
 
     private void CheckSave()
     {
-        string mySave = SaveSystem.GetFileName();
-        if (File.Exists(mySave))
+        if (File.Exists(SaveSystem.GetFileName()))
         {
             Debug.Log("LoadGame");
             SaveSystem.LoadGame();

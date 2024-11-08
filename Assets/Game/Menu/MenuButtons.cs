@@ -6,8 +6,14 @@ public class MenuButtons : MonoBehaviour
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject characterMenu;
 
-    public void OpenGame()
+    public void ContinueGame()
     {
+        SceneManager.LoadScene("Play");
+    }
+
+    public void NewGame()
+    {
+        SaveSystem.DeleteSave();
         SceneManager.LoadScene("Play");
     }
 
@@ -29,5 +35,11 @@ public class MenuButtons : MonoBehaviour
     public void CloseCharacterMenu()
     {
         characterMenu.SetActive(false);
+    }
+
+    public void ExitGame()
+    {
+        Debug.Log("Отсюда нет выхода.. О_О");
+        Application.Quit();
     }
 }

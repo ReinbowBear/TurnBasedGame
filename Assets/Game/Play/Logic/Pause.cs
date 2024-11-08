@@ -58,10 +58,4 @@ public class Pause : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene("Menu");
     }
-
-    public void ExitGame()
-    {
-        Debug.Log("Отсюда нет выхода.. О_О");
-        Application.Quit();
-    }
 }

@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -9,7 +11,9 @@ public class MenuKeyboard : MonoBehaviour
 
     [SerializeField] private GameObject ChoseObject;
     [SerializeField] private float duration;
-    [SerializeField] private GameObject[] Buttons;
+    [Space]
+    [SerializeField] private Button continueButton;
+    [SerializeField] private List<Button> buttons;
     private byte buttonIndex; 
 
     private Coroutine myCoroutine;
@@ -20,7 +24,20 @@ public class MenuKeyboard : MonoBehaviour
     void Awake()
     {
         menuInput = new GameInput();
+
+        CheckSave();
     }
+
+
+    private void CheckSave()
+    {
+        if (File.Exists(SaveSystem.GetFileName()))
+        {
+            buttons.Insert(0, continueButton);
+            continueButton.gameObject.SetActive(true);
+        }
+    }
+
 
     private void NewButton(InputAction.CallbackContext context)
     {
@@ -35,7 +52,7 @@ public class MenuKeyboard : MonoBehaviour
         }
         else if (value == -1)
         {
-            if (buttonIndex != Buttons.Length-1) //почему то выходит за границы массива, с -1 работает хорошо
+            if (buttonIndex != buttons.Count-1) //почему то выходит за границы индесов, с -1 работает хорошо
             {
                 buttonIndex++;
             }
@@ -49,12 +66,12 @@ public class MenuKeyboard : MonoBehaviour
         buttonIndex = newIndex;
         if (myCoroutine == null)
         {
-            myCoroutine = StartCoroutine(MoveToButton(Buttons[buttonIndex].transform.position));
+            myCoroutine = StartCoroutine(MoveToButton(buttons[buttonIndex].transform.position));
         }
         else
         {
             startPos = ChoseObject.transform.position;
-            endPos = Buttons[buttonIndex].transform.position;
+            endPos = buttons[buttonIndex].transform.position;
             timeElapsed = 0f;
         }
     }
@@ -78,9 +95,7 @@ public class MenuKeyboard : MonoBehaviour
 
     private void EnterOnButton(InputAction.CallbackContext context)
     {
-        Button button = Buttons[buttonIndex].GetComponent<Button>();
-
-        button.onClick.Invoke();
+        buttons[buttonIndex].onClick.Invoke();
     }
 
     private void ExitPanel(InputAction.CallbackContext context)

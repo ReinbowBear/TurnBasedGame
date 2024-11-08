@@ -22,6 +22,16 @@ public static class SaveSystem //https://www.youtube.com/watch?v=1mf730eb5Wo&t=4
         onLoad.Invoke();
     }
 
+    public static void DeleteSave()
+    {
+        string file = GetFileName();
+        
+        if (File.Exists(file))
+        {
+            File.Delete(file);
+        }
+    }
+
 
     public static string GetFileName()
     {
