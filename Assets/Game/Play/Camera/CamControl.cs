@@ -4,12 +4,12 @@ using UnityEngine.InputSystem;
 
 public class CamControl : MonoBehaviour
 {
-    private Camera cam;
+    [SerializeField] private Camera cam;
     private Coroutine myCoroutine;
     private bool holdButton;
-
-    [SerializeField] private byte minFov;
-    [SerializeField] private byte maxFov;
+    [Space]
+    [SerializeField] private byte minDist;
+    [SerializeField] private byte maxDist;
     [Space]
     [SerializeField] private float moveSpeed;
     [Space]
@@ -19,11 +19,6 @@ public class CamControl : MonoBehaviour
     private Quaternion startRotation;
     private Quaternion endRotation;
     private Vector3 angle = new Vector3(0, 90, 0);
-
-    void Awake()
-    {
-        cam = Camera.main;
-    }
 
 
     private void MoveCam(InputAction.CallbackContext context)
@@ -45,9 +40,15 @@ public class CamControl : MonoBehaviour
             Vector3 delta = Input.mousePosition - lastPosition;
             lastPosition = Input.mousePosition;
 
-            float moveX = delta.x * moveSpeed; //без умножения на скорость где либо, всё дёргается
+            float moveX = delta.x * moveSpeed;
             float moveY = delta.y * moveSpeed;
-            transform.position -= new Vector3(moveX - moveY, 0, moveY + moveX) * moveSpeed; //у мышки нет координаты z
+
+            Vector3 moveDirection = transform.right * (moveX - moveY) + transform.forward * (moveY + moveX);
+            
+            //newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX); //заготовка под ограничения дальности движения
+            //newPosition.z = Mathf.Clamp(newPosition.z, minZ, maxZ);
+
+            transform.position -= moveDirection;
 
             yield return null;
         }
@@ -57,14 +58,13 @@ public class CamControl : MonoBehaviour
     private void CamZoom(InputAction.CallbackContext context)
     {
         Vector2 scrollValue = GameKeyboard.gameInput.Player.Scroll.ReadValue<Vector2>();
-        cam.fieldOfView += -scrollValue.y/50; //можно установить конкретное значение а не делить value?
-        if (cam.fieldOfView > maxFov)
+        Vector3 newPos = cam.transform.position + cam.transform.forward * scrollValue.y/60;
+
+        float distance = Vector3.Distance(newPos, transform.position);
+
+        if (minDist <= distance && distance <= maxDist)
         {
-            cam.fieldOfView = maxFov;
-        }
-        if (cam.fieldOfView < minFov)
-        {
-            cam.fieldOfView = minFov;
+            cam.transform.position = newPos;
         }
     }
 

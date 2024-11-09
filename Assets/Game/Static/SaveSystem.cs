@@ -23,12 +23,10 @@ public static class SaveSystem //https://www.youtube.com/watch?v=1mf730eb5Wo&t=4
     }
 
     public static void DeleteSave()
-    {
-        string file = GetFileName();
-        
-        if (File.Exists(file))
+    {        
+        if (File.Exists(GetFileName()))
         {
-            File.Delete(file);
+            File.Delete(GetFileName());
         }
     }
 
@@ -44,6 +42,6 @@ public static class SaveSystem //https://www.youtube.com/watch?v=1mf730eb5Wo&t=4
 [System.Serializable] //сериализация позволяет записывать данные в файл
 public struct GameData
 {
-    public SaveInventoryContent saveInventoryContent;
     public SaveGlobalMap saveGlobalMap;
+    public SaveInventoryContent saveInventoryContent;
 }

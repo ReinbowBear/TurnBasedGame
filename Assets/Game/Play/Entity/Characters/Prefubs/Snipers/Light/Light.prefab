@@ -349,9 +349,9 @@ MonoBehaviour:
   rayLayer:
     serializedVersion: 2
     m_Bits: 64
+  mannaCount: 0
   myWeapon: {fileID: 0}
   myAbility: {fileID: 0}
-  mannaCount: 0
   myEquip: {fileID: 0}
   isAttacking: 0
   wasAttaking: 0
@@ -581,7 +581,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7679722838296313053}
-  m_Mesh: {fileID: -7405003382263728904, guid: 76af0439e0fd80c46814ce739c8614c7, type: 3}
+  m_Mesh: {fileID: -8031619785718356097, guid: 76af0439e0fd80c46814ce739c8614c7, type: 3}
 --- !u!23 &6174044936406946528
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -602,7 +602,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 26fb7178151c8c74ba09bbe657d54381, type: 2}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -710,7 +710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8449860522853889275, guid: 7e8f0ac5454742f49a84f50a56faf7bf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.2
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 8449860522853889275, guid: 7e8f0ac5454742f49a84f50a56faf7bf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

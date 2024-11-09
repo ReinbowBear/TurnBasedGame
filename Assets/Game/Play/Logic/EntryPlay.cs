@@ -6,10 +6,10 @@ public class EntryPlay : MonoBehaviour
     [SerializeField] private GlobalMap globalMap;
     [SerializeField] private MapContent mapContent;
     [SerializeField] private GlobalMapManager globalMapManager;
-
+    [Space]
     [SerializeField] private InventoryContent inventoryContent;
 
-    void Awake()
+    void Start()
     {
         CheckSave();
     }

@@ -18,9 +18,16 @@ public class GlobalMap : MonoBehaviour
 
     public System.Random random;
 
+    void Awake()
+    {
+        random = new System.Random(DateTime.Now.Millisecond);
+        mapPoints = new Map[mapsNumber.Length, mapHeight, mapWidth];
+        pathPoints = new Map[mapsNumber.Length, pathCount, mapHeight];
+    }
+
+    
     public void NewGlobalMap()
     {        
-        random = new System.Random(DateTime.Now.Millisecond);
         mapPoints = new Map[mapsNumber.Length, mapHeight, mapWidth];
         pathPoints = new Map[mapsNumber.Length, pathCount, mapHeight];
 
@@ -109,6 +116,8 @@ public class GlobalMap : MonoBehaviour
         SaveGlobalMap saveGlobalMap = SaveSystem.gameData.saveGlobalMap;
 
         random = saveGlobalMap.random;
+        
+        NewGlobalMap();
     }
 
 
