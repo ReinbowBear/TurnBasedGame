@@ -42,7 +42,7 @@ public class CharacterInventory : MonoBehaviour
     }
 
 
-    private void SetButton()
+    public void SetButton()
     {
         if (button.enabled == true)
         {

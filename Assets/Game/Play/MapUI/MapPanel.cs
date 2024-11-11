@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class MapPanel : MonoBehaviour
 {
     public static Action onNewBattle;
+    [SerializeField] private EntryBattle entryBattle;
 
     [SerializeField] private Image[] enemyImages;
     [SerializeField] private TextMeshProUGUI[] enemyCount;
-    [Space]
-    [SerializeField] private BattleMapManager battleMapManager;
+
     [HideInInspector] public Map chosenMap;
 
     public void StartMap()
@@ -18,10 +18,10 @@ public class MapPanel : MonoBehaviour
         if (chosenMap.mapState == Map.MapState.activate)
         {
             ClosePanel();
+
+            entryBattle.ActivateMap(chosenMap);
             
-            battleMapManager.ActivateMap(chosenMap);
             onNewBattle.Invoke();
-            
             SaveSystem.onSave.Invoke();
         }
     }

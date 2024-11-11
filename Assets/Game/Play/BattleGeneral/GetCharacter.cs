@@ -9,13 +9,13 @@ public class GetCharacter : MonoBehaviour
     [SerializeField] private ClickCharacter clickController;
     [SerializeField] private AbilitySlot[] characterSlots;
     [Space]
+    public byte tilesCount;
     [SerializeField] private LayerMask rayLayer;
-    [SerializeField] private byte tilesCount;
 
     public static List<GameObject> CharacterList = new List<GameObject>();
-    private List<Tile> tileList = new List<Tile>();
+    [HideInInspector] public List<Tile> tileList = new List<Tile>();
 
-    private void NewDrop()
+    public void NewDrop()
     {
         for (byte i = 0; i < characterSlots.Length; i++)
         {
@@ -80,16 +80,5 @@ public class GetCharacter : MonoBehaviour
         yield return null;
         gameCanvas.ShowUI();
         clickController.enabled = true;
-    }
-
-
-    void OnEnable()
-    {
-        MapPanel.onNewBattle += NewDrop;
-    }
-
-    void OnDisable()
-    {
-        MapPanel.onNewBattle -= NewDrop;
     }
 }

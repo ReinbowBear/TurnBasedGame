@@ -16,13 +16,13 @@ public class EnemyDrop : MonoBehaviour
     [SerializeField] private LayerMask rayLayer;
     private List<Tile> tiles = new List<Tile>();
 
-    private BattleMapManager battleMapManager;
+    private EntryBattle battleMapManager;
     private System.Random random;
     private byte turnTime;
 
     void Awake()
     {
-        battleMapManager = transform.root.GetComponent<BattleMapManager>();
+        battleMapManager = transform.root.GetComponent<EntryBattle>();
         random = new System.Random(DateTime.Now.Millisecond);
     }
 

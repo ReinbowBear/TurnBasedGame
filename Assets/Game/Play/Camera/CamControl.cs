@@ -5,20 +5,23 @@ using UnityEngine.InputSystem;
 public class CamControl : MonoBehaviour
 {
     [SerializeField] private Camera cam;
-    private Coroutine myCoroutine;
-    private bool holdButton;
     [Space]
-    [SerializeField] private byte minDist;
-    [SerializeField] private byte maxDist;
+    [SerializeField] private byte maxPosRange;
+    [Space]
+    [SerializeField] private byte minCamDist;
+    [SerializeField] private byte maxCamDist;
     [Space]
     [SerializeField] private float moveSpeed;
     [Space]
     [SerializeField] private float rotationDuration;
-    private float timeElapsed;
 
     private Quaternion startRotation;
     private Quaternion endRotation;
     private Vector3 angle = new Vector3(0, 90, 0);
+
+    private Coroutine myCoroutine;
+    private bool holdButton;
+    private float timeElapsed;
 
 
     private void MoveCam(InputAction.CallbackContext context)
@@ -44,11 +47,12 @@ public class CamControl : MonoBehaviour
             float moveY = delta.y * moveSpeed;
 
             Vector3 moveDirection = transform.right * (moveX - moveY) + transform.forward * (moveY + moveX);
+            Vector3 newPos = transform.position - moveDirection;
             
-            //newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX); //заготовка под ограничения дальности движения
-            //newPosition.z = Mathf.Clamp(newPosition.z, minZ, maxZ);
+            newPos.x = Mathf.Clamp(newPos.x, 0, maxPosRange);
+            newPos.z = Mathf.Clamp(newPos.z, 0, maxPosRange);
 
-            transform.position -= moveDirection;
+            transform.position = newPos;
 
             yield return null;
         }
@@ -62,7 +66,7 @@ public class CamControl : MonoBehaviour
 
         float distance = Vector3.Distance(newPos, transform.position);
 
-        if (minDist <= distance && distance <= maxDist)
+        if (minCamDist <= distance && distance <= maxCamDist)
         {
             cam.transform.position = newPos;
         }

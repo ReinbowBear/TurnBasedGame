@@ -2,9 +2,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleMapManager : MonoBehaviour
+public class EntryBattle : MonoBehaviour
 {
+    [SerializeField] private GetCharacter getCharacter;
+    [SerializeField] private StartCam startCam;
+
     [HideInInspector] public List<GameObject> mapEnemys = new List<GameObject>();
+
     private GameObject myMapObject;
     private System.Random random;
 
@@ -20,11 +24,14 @@ public class BattleMapManager : MonoBehaviour
         {
             Destroy(myMapObject);
         }
-
         myMapObject = Instantiate(map.mapData.mapPrefab, transform);
 
         RandomEnemyList(map);
+
+        getCharacter.NewDrop(); //я бы срабатывал это по событию но нужна чоткая последовательность, так что будет этот скрипт..
+        startCam.SetCam();
     }
+
 
     private void RandomEnemyList(Map map)
     {
