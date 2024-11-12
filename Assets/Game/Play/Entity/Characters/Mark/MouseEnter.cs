@@ -3,14 +3,7 @@ using UnityEngine;
 public class MouseEnter : MonoBehaviour
 {
     [SerializeField] private RotateObject rotateObject;
-
-    private LogicCharacter logicCharacter;
-
-    void Awake()
-    {
-        logicCharacter = transform.root.GetComponent<LogicCharacter>();
-    }
-
+    [SerializeField] private LogicCharacter logicCharacter;
 
     void OnMouseEnter()
     {

@@ -103,7 +103,9 @@ public class EnemyDrop : MonoBehaviour
                 if (tiles[randomIndex].isTaken != true)
                 {
                     wasSpawned = true;
-                    Instantiate(battleMapManager.mapEnemys[0], tiles[randomIndex].transform.position, Quaternion.identity);     
+                    GameObject enemy = Instantiate(battleMapManager.mapEnemys[0], transform.root);
+                    enemy.transform.position = tiles[randomIndex].transform.position;
+                    
                     battleMapManager.mapEnemys.Remove(battleMapManager.mapEnemys[0]);         
                 }
                 else

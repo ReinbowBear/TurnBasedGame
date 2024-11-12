@@ -17,7 +17,7 @@ public class CamFolow : MonoBehaviour
         CamObject = Camera.main.transform.root.gameObject;
 
         GameObject character = GetComponent<CharacterHud>().myCharacter; //с такой записью может багатся если персонаж умирает или заменяется
-        characterID = GetCharacter.CharacterList.IndexOf(character);
+        characterID = GetCharacter.characterList.IndexOf(character);
     }
 
 
@@ -26,12 +26,12 @@ public class CamFolow : MonoBehaviour
         GetNewCharacter(characterID);
         if (myCoroutine == null)
         {
-            myCoroutine = StartCoroutine(CameraFolow(GetCharacter.CharacterList[characterID].transform.position));
+            myCoroutine = StartCoroutine(CameraFolow(GetCharacter.characterList[characterID].transform.position));
         }
         else
         {
             startPos = CamObject.transform.position;
-            endPos = GetCharacter.CharacterList[characterID].transform.position;
+            endPos = GetCharacter.characterList[characterID].transform.position;
             timeElapsed = 0f;
         }
     }
@@ -60,7 +60,7 @@ public class CamFolow : MonoBehaviour
             ClickCharacter.choseCharacter.FalseCharacter();
         }
 
-        LogicCharacter newCharacter = GetCharacter.CharacterList[characterID].GetComponent<LogicCharacter>();
+        LogicCharacter newCharacter = GetCharacter.characterList[characterID].GetComponent<LogicCharacter>();
         
         ClickCharacter.choseCharacter = newCharacter;
         newCharacter.ChoseCharacter();

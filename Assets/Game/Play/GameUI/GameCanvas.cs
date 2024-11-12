@@ -35,10 +35,7 @@ public class GameCanvas : MonoBehaviour
     {
         for (byte i = 0; i < Uirect.Length; i++)
         {
-            Uirect[i].DOAnchorPos(ShowPos[i].position, 0.6f)
-                .SetLink(Uirect[i].gameObject)
-                .From()
-                .OnComplete(() => { Uirect[i].gameObject.SetActive(false); });
+            Uirect[i].gameObject.SetActive(false);
         }
     }
 

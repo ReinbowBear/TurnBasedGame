@@ -12,7 +12,7 @@ public class GetCharacter : MonoBehaviour
     public byte tilesCount;
     [SerializeField] private LayerMask rayLayer;
 
-    public static List<GameObject> CharacterList = new List<GameObject>();
+    public static List<GameObject> characterList = new List<GameObject>();
     [HideInInspector] public List<Tile> tileList = new List<Tile>();
 
     public void NewDrop()
@@ -21,15 +21,16 @@ public class GetCharacter : MonoBehaviour
         {
             if (characterSlots[i].item != null)
             {
-                GameObject newCharacter = Instantiate(characterSlots[i].item.itemSO.itemPrefab, transform.position + new Vector3 (0, -20, 0), Quaternion.identity);
-                CharacterList.Add(newCharacter);
+                GameObject newCharacter = Instantiate(characterSlots[i].item.itemSO.itemPrefab, transform);
+                newCharacter.transform.position += new Vector3 (0, -20, 0);
+                characterList.Add(newCharacter);
             }
         }
         StartCoroutine(DropZone()); //может запустить функцию даже если персонажей 0
     }
 
 
-    private IEnumerator DropZone() //запускается по событию и по идеи может пропустить тайлы, но это не происходит из-за очереди подписок (это может сломатся)
+    private IEnumerator DropZone()
     {
         for (byte i = 0; i < tilesCount; i++)
         {
@@ -48,21 +49,21 @@ public class GetCharacter : MonoBehaviour
         }
 
         byte charactersLeft = 0;
-        while (charactersLeft != CharacterList.Count)
+        while (charactersLeft != characterList.Count)
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, 30, rayLayer))
             {
                 if (hit.transform.CompareTag("ActiveTile"))
                 {
-                    CharacterList[charactersLeft].transform.position = hit.transform.position;
+                    characterList[charactersLeft].transform.position = hit.transform.position;
                     if (GameKeyboard.gameInput.Player.Mouse_0.triggered)
                     {
                         Tile tileScript = hit.transform.GetComponent<Tile>();
-                        tileScript.isTaken = CharacterList[charactersLeft];
+                        tileScript.isTaken = characterList[charactersLeft];
                         tileScript.DeactivateTile();
 
-                        Rigidbody rigidbody = CharacterList[charactersLeft].GetComponent<Rigidbody>();
+                        Rigidbody rigidbody = characterList[charactersLeft].GetComponent<Rigidbody>();
                         rigidbody.velocity = Vector3.zero;
                         rigidbody.angularVelocity = Vector3.zero; // Убираем вращение
                         charactersLeft++;

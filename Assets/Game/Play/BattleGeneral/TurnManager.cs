@@ -8,6 +8,9 @@ public class TurnManager : MonoBehaviour
     public static Action onPlayerTurn;
     public static Action onEndLevel;
 
+    [SerializeField] private byte maxTurn;
+    private byte turnTime;
+
     public static List<Weapon> characterAttacks = new List<Weapon>();
     //public static List<EnemyWeapon> enemyAttacks = new List<EnemyWeapon>();
 
@@ -15,25 +18,24 @@ public class TurnManager : MonoBehaviour
     
     private bool isEnemyTurn;
 
+    void Awake()
+    {
+        turnTime = maxTurn;
+    }
+
 
     public void StartEnemyTurn()
     {        
         if (isEnemyTurn == false)
         {
-            if (characterAttacks.Count != 0 || enemys.Count != 0)
-            {
-                StartCoroutine(EnemyTurn());
-            }
-            else
-            {
-                onEndLevel.Invoke();
-            }
+            turnTime--;
+            StartCoroutine(EnemyTurn());
         }
     }
 
     private IEnumerator EnemyTurn()
     {
-        isEnemyTurn = true;
+        isEnemyTurn = true;        
         GameKeyboard.gameInput.Disable();
 
         if (characterAttacks.Count != 0)
@@ -61,8 +63,22 @@ public class TurnManager : MonoBehaviour
         isEnemyTurn = false;
         
         GameKeyboard.gameInput.Enable();
-
         SaveSystem.onSave.Invoke();
-        onPlayerTurn.Invoke();
+
+        CheckBattle();
+    }
+
+
+    private void CheckBattle()
+    {
+        if (turnTime == 0 || GetCharacter.characterList.Count == 0)
+        {
+            turnTime = maxTurn;
+            onEndLevel.Invoke();
+        }
+        else
+        {
+            onPlayerTurn.Invoke();
+        }
     }
 }

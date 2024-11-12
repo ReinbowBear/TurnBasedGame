@@ -409,6 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateObject: {fileID: 422737812383009680}
+  logicCharacter: {fileID: 4086734756361043770}
 --- !u!1 &4909227668087438109
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,6 +539,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1360da6774f362d47bd04c0efee5a166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityCharacter: {fileID: 3867754755623905324}
+  moveCharacter: {fileID: 3499018155675969277}
   attack: {fileID: 7231288791959708963}
   move: {fileID: 2697943560266700303}
 --- !u!1 &7679722838296313053

@@ -2,18 +2,12 @@ using UnityEngine;
 
 public class ShowCanMove : MonoBehaviour
 {
-    private CombatCharacter abilityCharacter;
-    private MoveCharacter moveCharacter;
-    
+    [SerializeField] private CombatCharacter abilityCharacter;
+    [SerializeField] private MoveCharacter moveCharacter;
+    [Space]
     [SerializeField] private MeshRenderer attack;
     [SerializeField] private MeshRenderer move;
     private bool active;
-
-    void Awake()
-    {
-        abilityCharacter = transform.root.GetComponent<CombatCharacter>();
-        moveCharacter = transform.root.GetComponent<MoveCharacter>();
-    }
 
 
     private void CanHaveTurn()

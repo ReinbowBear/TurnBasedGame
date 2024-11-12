@@ -156,9 +156,9 @@ public class EnMove : MonoBehaviour
     public int FindCharacters()
     {
         List<float> distance = new List<float>();
-        for (byte i = 0; i < GetCharacter.CharacterList.Count; i++)
+        for (byte i = 0; i < GetCharacter.characterList.Count; i++)
         {
-            float newDistance = Vector3.Distance(transform.position, GetCharacter.CharacterList[i].transform.position);
+            float newDistance = Vector3.Distance(transform.position, GetCharacter.characterList[i].transform.position);
             distance.Add(newDistance);
         }
         float minValue = distance.Min();
@@ -168,7 +168,7 @@ public class EnMove : MonoBehaviour
         List<float> tileDistance = new List<float>();
         for (byte i = 0; i < closedSet.Count; i++)
         {
-            float newDistance = Vector3.Distance(closedSet[i].transform.position, GetCharacter.CharacterList[minIndex].transform.position);
+            float newDistance = Vector3.Distance(closedSet[i].transform.position, GetCharacter.characterList[minIndex].transform.position);
             tileDistance.Add(newDistance);
         }
         minValue = tileDistance.Min();

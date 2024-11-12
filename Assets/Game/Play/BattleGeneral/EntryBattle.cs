@@ -9,7 +9,6 @@ public class EntryBattle : MonoBehaviour
 
     [HideInInspector] public List<GameObject> mapEnemys = new List<GameObject>();
 
-    private GameObject myMapObject;
     private System.Random random;
 
     void Awake()
@@ -20,16 +19,12 @@ public class EntryBattle : MonoBehaviour
 
     public void ActivateMap(Map map)
     {        
-        if (myMapObject != null)
-        {
-            Destroy(myMapObject);
-        }
-        myMapObject = Instantiate(map.mapData.mapPrefab, transform);
+        Instantiate(map.mapData.mapPrefab, transform);
+
+        getCharacter.NewDrop();
+        startCam.SetCam();
 
         RandomEnemyList(map);
-
-        getCharacter.NewDrop(); //я бы срабатывал это по событию но нужна чоткая последовательность, так что будет этот скрипт..
-        startCam.SetCam();
     }
 
 
@@ -56,4 +51,26 @@ public class EntryBattle : MonoBehaviour
             list[randomIndex] = temp;
         }
     }
+
+
+    public void EndBattle()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        GetCharacter.characterList.Clear();
+    }
+
+
+    void OnEnable()
+    {
+        TurnManager.onEndLevel += EndBattle;
+    }
+
+    void OnDisable()
+    {
+        TurnManager.onEndLevel -= EndBattle;
+    }    
 }
