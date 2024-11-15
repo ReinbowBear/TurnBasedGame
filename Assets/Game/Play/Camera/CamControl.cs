@@ -61,7 +61,7 @@ public class CamControl : MonoBehaviour
 
     private void CamZoom(InputAction.CallbackContext context)
     {
-        Vector2 scrollValue = GameKeyboard.gameInput.Player.Scroll.ReadValue<Vector2>();
+        Vector2 scrollValue = BattleKeyboard.gameInput.Player.Scroll.ReadValue<Vector2>();
         Vector3 newPos = cam.transform.position + cam.transform.forward * scrollValue.y/60;
 
         float distance = Vector3.Distance(newPos, transform.position);
@@ -123,23 +123,23 @@ public class CamControl : MonoBehaviour
 
     void Start() //тут должен был быть OnEnable, но почему то нулевой референс возникает тут и у Pause
     {
-        GameKeyboard.gameInput.Player.Mouse_1.started += MoveCam;
-        GameKeyboard.gameInput.Player.Mouse_1.canceled += StopCam;
+        BattleKeyboard.gameInput.Player.Mouse_1.started += MoveCam;
+        BattleKeyboard.gameInput.Player.Mouse_1.canceled += StopCam;
 
-        GameKeyboard.gameInput.Player.Scroll.started += CamZoom;
+        BattleKeyboard.gameInput.Player.Scroll.started += CamZoom;
 
-        GameKeyboard.gameInput.Player.Q.started += context => RotateCamera(0);
-        GameKeyboard.gameInput.Player.E.started += context => RotateCamera(1);
+        BattleKeyboard.gameInput.Player.Q.started += context => RotateCamera(0);
+        BattleKeyboard.gameInput.Player.E.started += context => RotateCamera(1);
     }
 
     void OnDestroy()
     {
-        GameKeyboard.gameInput.Player.Mouse_1.started -= MoveCam;
-        GameKeyboard.gameInput.Player.Mouse_1.canceled -= StopCam;
+        BattleKeyboard.gameInput.Player.Mouse_1.started -= MoveCam;
+        BattleKeyboard.gameInput.Player.Mouse_1.canceled -= StopCam;
 
-        GameKeyboard.gameInput.Player.Scroll.started -= CamZoom;
+        BattleKeyboard.gameInput.Player.Scroll.started -= CamZoom;
 
-        GameKeyboard.gameInput.Player.Q.started -= context => RotateCamera(0);
-        GameKeyboard.gameInput.Player.E.started -= context => RotateCamera(1);
+        BattleKeyboard.gameInput.Player.Q.started -= context => RotateCamera(0);
+        BattleKeyboard.gameInput.Player.E.started -= context => RotateCamera(1);
     }
 }

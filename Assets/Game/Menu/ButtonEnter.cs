@@ -8,6 +8,6 @@ public class ButtonEnter : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData pointerEventData) 
     { 
-        menuKeyboard.CheckCoroutine(buttonId);
+        menuKeyboard.MoveTo(buttonId);
     } 
 }

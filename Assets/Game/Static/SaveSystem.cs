@@ -44,4 +44,6 @@ public struct GameData
 {
     public SaveGlobalMap saveGlobalMap;
     public SaveInventoryContent saveInventoryContent;
+
+    public SaveMapPanel saveMapPanel;
 }

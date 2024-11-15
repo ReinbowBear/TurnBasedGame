@@ -1,20 +1,19 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; 
 
 public class MenuButtons : MonoBehaviour
 {
     [SerializeField] private GameObject settingsMenu;
-    [SerializeField] private GameObject characterMenu;
+    
 
     public void ContinueGame()
     {
-        SceneManager.LoadScene("Play");
+        Scene.Load("Battle"); //дописать в какой сцене мы сохранились
     }
 
     public void NewGame()
     {
         SaveSystem.DeleteSave();
-        SceneManager.LoadScene("Play");
+        Scene.Load("Map");
     }
 
 
@@ -28,18 +27,9 @@ public class MenuButtons : MonoBehaviour
     }
 
 
-    public void OpenCharacterMenu()
-    {
-        characterMenu.SetActive(true);
-    }
-    public void CloseCharacterMenu()
-    {
-        characterMenu.SetActive(false);
-    }
-
     public void ExitGame()
     {
-        Debug.Log("Отсюда нет выхода.. О_О");
+        Debug.Log("Отсюда нет выхода.. x_x");
         Application.Quit();
     }
 }
