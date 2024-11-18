@@ -5,7 +5,6 @@ public class InventoryContent : MonoBehaviour
     [SerializeField] private GameObject itemPrefab;
     [Space]
     [SerializeField] private SetInventory myInventory;
-    [SerializeField] private Content content;
     [Space]
     [SerializeField] private AbilitySlot[] characterSlots;
 
@@ -13,13 +12,13 @@ public class InventoryContent : MonoBehaviour
     {
         for (byte i = 0; i < characterSlots.Length; i++)
         {
-            int random = Random.Range(0, content.characters.Length);
+            int random = Random.Range(0, Content.data.characters.Length);
             
-            addCharacter(content.characters[random]);
+            addCharacter(Content.data.characters[random]);
         }
     }
 
-    public void AddItem(ItemSO itemSO)
+    public void InventoryAddItem(ItemSO itemSO)
     {
         Item newItem = Instantiate(itemPrefab, transform).GetComponent<Item>();
 
@@ -87,7 +86,7 @@ public class InventoryContent : MonoBehaviour
 
         for (byte i = 0; i < saveInventory.itemsSO.Length; i++)
         {
-            AddItem(saveInventory.itemsSO[i]);
+            InventoryAddItem(saveInventory.itemsSO[i]);
         }
     }
 
@@ -105,7 +104,7 @@ public class InventoryContent : MonoBehaviour
     }
 }
 
-
+[System.Serializable]
 public struct SaveInventoryContent
 {
     public ItemSO[] CharactersSO;

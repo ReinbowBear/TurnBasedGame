@@ -21,7 +21,7 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         equip
     }
 
-    [HideInInspector] public ItemType itemType;
+    [HideInInspector] public ItemType itemType; //айтем тайп теперь есть у скриптбл обджекта, то есть предмета напрямую, а этот скрипт надо подфиксить...
 
     [HideInInspector] public Transform originalParent;
     [HideInInspector] public ItemSO itemSO;

@@ -35,7 +35,8 @@ public class Pause : MonoBehaviour
     {
         Time.timeScale = 1;
         
-        SaveSystem.SaveGame();
+        SaveSystem.onSave.Invoke();
+        SaveSystem.SaveFile();
         Scene.LoadMenu();
     }
 }

@@ -9,17 +9,15 @@ public static class SaveSystem //https://www.youtube.com/watch?v=1mf730eb5Wo&t=4
     
     public static GameData gameData = new GameData();
 
-    public static void SaveGame()
+    public static void SaveFile()
     {
         File.WriteAllText(GetFileName(), JsonUtility.ToJson(gameData, true));
     }
 
-    public static void LoadGame()
+    public static void LoadFile()
     {
         string saveContent = File.ReadAllText(GetFileName());
         gameData = JsonUtility.FromJson<GameData>(saveContent);
-
-        onLoad.Invoke();
     }
 
     public static void DeleteSave()
@@ -42,6 +40,8 @@ public static class SaveSystem //https://www.youtube.com/watch?v=1mf730eb5Wo&t=4
 [System.Serializable] //сериализация позволяет записывать данные в файл
 public struct GameData
 {
+    public SaveScene saveScene;
+
     public SaveGlobalMap saveGlobalMap;
     public SaveInventoryContent saveInventoryContent;
 

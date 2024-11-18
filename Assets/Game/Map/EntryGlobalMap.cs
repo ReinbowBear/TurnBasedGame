@@ -20,7 +20,7 @@ public class EntryGlobalMap : MonoBehaviour
         if (File.Exists(SaveSystem.GetFileName()))
         {
             Debug.Log("LoadGame");
-            SaveSystem.LoadGame();
+            SaveSystem.onLoad.Invoke();
         }
         else
         {
@@ -30,7 +30,8 @@ public class EntryGlobalMap : MonoBehaviour
 
             inventoryContent.StartCharacters();
 
-            SaveSystem.SaveGame();
+            SaveSystem.onSave.Invoke();
+            SaveSystem.SaveFile();
         }
     }
 }

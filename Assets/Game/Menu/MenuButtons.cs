@@ -7,13 +7,13 @@ public class MenuButtons : MonoBehaviour
 
     public void ContinueGame()
     {
-        Scene.Load("Battle"); //дописать в какой сцене мы сохранились
+        Scene.Continue();
     }
 
     public void NewGame()
     {
         SaveSystem.DeleteSave();
-        Scene.Load("Map");
+        Scene.Load(1);
     }
 
 

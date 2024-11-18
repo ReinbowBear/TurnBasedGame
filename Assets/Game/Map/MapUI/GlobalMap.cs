@@ -17,10 +17,13 @@ public class GlobalMap : MonoBehaviour
     public Map[,,] pathPoints;
 
     public System.Random random;
+    private int seed;
 
     void Awake()
     {
-        random = new System.Random(DateTime.Now.Millisecond);
+        seed = DateTime.Now.Millisecond;
+        random = new System.Random(seed);
+
         mapPoints = new Map[mapsNumber.Length, mapHeight, mapWidth];
         pathPoints = new Map[mapsNumber.Length, pathCount, mapHeight];
     }
@@ -102,7 +105,7 @@ public class GlobalMap : MonoBehaviour
     private void Save()
     {
         SaveGlobalMap saveGlobalMap = new SaveGlobalMap();
-        saveGlobalMap.random = random;
+        saveGlobalMap.seed = seed;
 
         SaveSystem.gameData.saveGlobalMap = saveGlobalMap;
     }
@@ -110,8 +113,9 @@ public class GlobalMap : MonoBehaviour
     private void Load()
     {
         SaveGlobalMap saveGlobalMap = SaveSystem.gameData.saveGlobalMap;
-        random = saveGlobalMap.random;
+        seed = saveGlobalMap.seed;
 
+        random = new System.Random(seed);
         NewGlobalMap();
     }
 
@@ -135,8 +139,8 @@ public class GlobalMap : MonoBehaviour
     }
 }
 
-
+[System.Serializable]
 public struct SaveGlobalMap
 {
-    public System.Random random;
+    public int seed;
 }

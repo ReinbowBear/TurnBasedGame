@@ -12,7 +12,6 @@ public class EntryMenu : MonoBehaviour
     {
         CheckSave();
         blackScreen();
-
     }
 
 
@@ -22,6 +21,8 @@ public class EntryMenu : MonoBehaviour
         {
             menuKeyboard.buttons[0].gameObject.SetActive(true);
             menuKeyboard.MoveTo(0);
+
+            SaveSystem.LoadFile();
         }
     }
 

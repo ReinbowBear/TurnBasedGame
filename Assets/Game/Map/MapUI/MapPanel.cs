@@ -21,8 +21,7 @@ public class MapPanel : MonoBehaviour
 
             onNewBattle.Invoke();
             SaveSystem.onSave.Invoke();
-
-            SceneManager.LoadScene("Battle");
+            Scene.Load(2);
         }
     }
 
@@ -68,7 +67,7 @@ public class MapPanel : MonoBehaviour
     }
 }
 
-
+[System.Serializable]
 public struct SaveMapPanel
 {
     public MapData mapData;
