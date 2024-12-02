@@ -19,9 +19,9 @@ public class EntryBattle : MonoBehaviour
     }
 
 
-    public void ActivateMap(MapData mapData)
+    public async void ActivateMap(MapData mapData)
     {        
-        Instantiate(Content.data.maps[mapData.mapIndex], transform);
+        await Content.GetAsset(Content.data.maps[mapData.mapIndex], transform);
 
         getCharacter.NewDrop();
         startCam.SetCam();
@@ -36,7 +36,8 @@ public class EntryBattle : MonoBehaviour
         {
             for (byte ii = 0; ii < mapData.enemyCount[i]; ii++)
             {
-                mapEnemys.Add(Content.data.enemys[mapData.enemyIndex[i]].itemPrefab);
+                Debug.Log("ещё не готово");
+                //mapEnemys.Add(Content.data.enemys[mapData.enemyIndex[i]].itemPrefab);
             }
         }
         Shuffle(mapEnemys);

@@ -14,15 +14,6 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private RectTransform rectTransform;
 
-    public enum ItemType
-    {
-        character,
-        ability,
-        equip
-    }
-
-    [HideInInspector] public ItemType itemType; //айтем тайп теперь есть у скриптбл обджекта, то есть предмета напрямую, а этот скрипт надо подфиксить...
-
     [HideInInspector] public Transform originalParent;
     [HideInInspector] public ItemSO itemSO;
 
@@ -38,19 +29,6 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     {
         image.sprite = itemSO.image;
         itemName.text = itemSO.itemName;
-
-        if (itemSO.itemPrefab.GetComponent<LogicCharacter>() == true)
-        {
-            itemType = ItemType.character;
-        }
-        else if (itemSO.itemPrefab.GetComponent<Ability>() == true)
-        {
-            itemType = ItemType.ability;
-        }
-        else if (itemSO.itemPrefab.GetComponent<Equipment>() == true)
-        {
-            itemType = ItemType.equip;
-        }
     }
 
 

@@ -1333,7 +1333,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 8156746577517630107, guid: 6743c623411223844940846b917fb6e8, type: 3}
   myInventory: {fileID: 967236199}
-  content: {fileID: 0}
   characterSlots:
   - {fileID: 444892281}
   - {fileID: 1902647126}
@@ -3025,6 +3024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5327c4bfbd7406a4ea8097ae3a33aab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  contentSO: {fileID: 11400000, guid: 5f057a5abb255f54d9bfd64a066ecb47, type: 2}
   enemyImages:
   - {fileID: 1651089908}
   - {fileID: 413483721}

@@ -10,16 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Localization-String-Tables-Ukrainian (uk)
+  m_Name: Maps
   m_EditorClassIdentifier: 
-  m_GroupName: Localization-String-Tables-Ukrainian (uk)
+  m_GroupName: Maps
   m_Data:
     m_SerializedData: []
-  m_GUID: c2cf7aa308d157d428ae350026bca540
-  m_SerializeEntries: []
-  m_ReadOnly: 1
+  m_GUID: 5af9cd332ebd4a3499e373f54481c6c7
+  m_SerializeEntries:
+  - m_GUID: e1b5a4b24489188499b2050f57025d98
+    m_Address: Grid 1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5bb7f9651bed27546a446493c92fb3c6, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: af7eede91c01a9f4ea3f4b4b18b57303, type: 2}
-    - {fileID: 11400000, guid: 87fe8f9a7d68f2e4fba296d3df54e8ad, type: 2}
+    - {fileID: 11400000, guid: 83ff16389b1a664489c747bb8632eadf, type: 2}
+    - {fileID: 11400000, guid: 93de73dad338bfb46bd17b2373ddba2b, type: 2}

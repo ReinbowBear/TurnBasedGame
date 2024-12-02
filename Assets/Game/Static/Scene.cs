@@ -5,7 +5,7 @@ public static class Scene
 {
     public static byte currentScene;
 
-    static Scene() //статический конструктор 
+    static Scene()
     {
         SaveSystem.onSave += Save;
     }

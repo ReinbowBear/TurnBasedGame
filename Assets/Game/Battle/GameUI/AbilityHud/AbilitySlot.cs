@@ -5,13 +5,7 @@ public class AbilitySlot : MonoBehaviour, IDropHandler
 {    
     public Item item => GetComponentInChildren<Item>();
 
-    public enum ItemType
-    {
-        character,
-        ability,
-        equip
-    }
-    [SerializeField] private ItemType myItemType;
+    [SerializeField] private ItemSO.ItemType myItemType;
 
     private void SwapItems(Item newItem)
     {
@@ -25,7 +19,7 @@ public class AbilitySlot : MonoBehaviour, IDropHandler
         if (item == null)
         {
             Item newItem = eventData.pointerDrag.GetComponent<Item>();
-            if ((byte)myItemType == ((byte)newItem.itemType))
+            if (newItem.itemSO.itemType == myItemType)
             {
                 newItem.originalParent = transform;
             }
@@ -33,7 +27,7 @@ public class AbilitySlot : MonoBehaviour, IDropHandler
         else
         {
             Item newItem = eventData.pointerDrag.GetComponent<Item>();
-            if ((byte)myItemType == ((byte)newItem.itemType))
+            if (newItem.itemSO.itemType == myItemType)
             {
                 SwapItems(newItem);
             }

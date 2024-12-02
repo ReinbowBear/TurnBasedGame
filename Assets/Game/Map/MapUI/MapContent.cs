@@ -5,8 +5,6 @@ public class MapContent : MonoBehaviour
 {
     [SerializeField] private GlobalMap globalMap;
     [SerializeField] private MapPanel mapPanel;
-
-    private List<GameObject> maps;
     [Space]
     [SerializeField] private byte minEnemyCount;
     [SerializeField] private byte maxEnemyCount;
@@ -17,7 +15,6 @@ public class MapContent : MonoBehaviour
     public void PrepareMaps()
     {
         random = globalMap.random;
-        maps = new List<GameObject>(Content.data.maps);
 
         for (byte i = 0; i < globalMap.mapsNumber.Length; i++)
         {
@@ -38,7 +35,7 @@ public class MapContent : MonoBehaviour
     {
         MapData mapData = new MapData();
 
-        mapData.mapIndex = random.Next(0, maps.Count); //нужен лист индексов которые будем удалять что бы карты не повторялись
+        mapData.mapIndex = random.Next(0, Content.data.maps.Length); //нужен лист индексов которые будем удалять что бы карты не повторялись
 
         mapData.enemyIndex = new int[EnemyTypesCount[mapHeight]];
         for (byte i = 0; i < EnemyTypesCount[mapHeight]; i++)
@@ -60,7 +57,6 @@ public class MapContent : MonoBehaviour
 public struct MapData
 {
     public int mapIndex;
-    //public GameObject batleTarget;
 
     public int[] enemyIndex;
     public int[] enemyCount;

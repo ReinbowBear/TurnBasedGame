@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MapPanel : MonoBehaviour
@@ -52,7 +51,10 @@ public class MapPanel : MonoBehaviour
 
     private void SaveMap()
     {
-        SaveSystem.gameData.saveMapPanel.mapData = chosenMap.mapData;
+        SaveMapPanel saveMapPanel = new SaveMapPanel();
+        saveMapPanel.mapData = chosenMap.mapData;
+
+        SaveSystem.gameData.saveMapPanel = saveMapPanel;
     }
 
 
@@ -70,5 +72,5 @@ public class MapPanel : MonoBehaviour
 [System.Serializable]
 public struct SaveMapPanel
 {
-    public MapData mapData;
+    public MapData mapData; //классы явно не сохраняются в этой штуке... но как переход для сцены пока норм
 }

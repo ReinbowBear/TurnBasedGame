@@ -2994,7 +2994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChoseObject: {fileID: 1348740373}
-  duration: 0.2
+  duration: 0.15
   buttons:
   - {fileID: 178852320}
   - {fileID: 152346945}

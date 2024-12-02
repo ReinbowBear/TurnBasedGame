@@ -315,6 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956bb9b8e4744fa4884cf5513dfffd4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myContentSO: {fileID: 11400000, guid: e9ce7d30f943b8242bc04a37e6f66155, type: 2}
   maps:
   - {fileID: 133146569566732636, guid: e1b5a4b24489188499b2050f57025d98, type: 3}
   enemys:
@@ -1503,7 +1504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChoseObject: {fileID: 1458818782}
-  duration: 0.2
+  duration: 0.15
   buttons:
   - {fileID: 1147289605}
   - {fileID: 9084664}

@@ -21,9 +21,10 @@ public class GetCharacter : MonoBehaviour
         {
             if (characterSlots[i].item != null)
             {
-                GameObject newCharacter = Instantiate(characterSlots[i].item.itemSO.itemPrefab, transform);
-                newCharacter.transform.position += new Vector3 (0, -20, 0);
-                characterList.Add(newCharacter);
+                Debug.Log("новая система базі контента, надо тут переписать");
+                //GameObject newCharacter = Instantiate(characterSlots[i].item.itemSO.itemPrefab, transform);
+                //newCharacter.transform.position += new Vector3 (0, -20, 0);
+                //characterList.Add(newCharacter);
             }
         }
         StartCoroutine(DropZone()); //может запустить функцию даже если персонажей 0

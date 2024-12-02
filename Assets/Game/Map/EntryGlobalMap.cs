@@ -21,6 +21,7 @@ public class EntryGlobalMap : MonoBehaviour
         {
             Debug.Log("LoadGame");
             SaveSystem.onLoad.Invoke();
+            mapContent.PrepareMaps();
         }
         else
         {

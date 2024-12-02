@@ -14,7 +14,7 @@ public class InventoryContent : MonoBehaviour
         {
             int random = Random.Range(0, Content.data.characters.Length);
             
-            addCharacter(Content.data.characters[random]);
+            AddCharacter(Content.data.characters[random]);
         }
     }
 
@@ -34,7 +34,7 @@ public class InventoryContent : MonoBehaviour
         }
     }
 
-    public void addCharacter(ItemSO itemSO)
+    public void AddCharacter(ItemSO itemSO)
     {
         for (byte i = 0; i < characterSlots.Length; i++)
         {
@@ -81,12 +81,18 @@ public class InventoryContent : MonoBehaviour
 
         for (byte i = 0; i < characterSlots.Length; i++)
         {
-            addCharacter(saveInventory.CharactersSO[i]);
+            if (saveInventory.CharactersSO[i] != null)
+            {
+                AddCharacter(saveInventory.CharactersSO[i]);
+            }
         }
 
-        for (byte i = 0; i < saveInventory.itemsSO.Length; i++)
+        for (byte i = 0; i < myInventory.slots.Count; i++)
         {
-            InventoryAddItem(saveInventory.itemsSO[i]);
+            if (saveInventory.itemsSO[i] != null)
+            {
+                InventoryAddItem(saveInventory.itemsSO[i]);
+            }
         }
     }
 
